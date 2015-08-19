@@ -1,7 +1,17 @@
+<<<<<<< .mine
 # Fresco-Demo-In-Eclipse
 
-閫傜敤浜巈clipse涓殑fresco宸ョ▼
+适用于eclipse中的fresco工程
 
-1. elipse 瀵煎叆宸ョ▼鍗冲彲.
-2. 灏哻om.cjz鍖呭悕鏀逛负浣犵浉搴旂殑宸ョ▼鍖呭悕.
-3. 淇敼瀵煎叆鐨凴
+1. elipse 导入工程即可.
+2. 将com.cjz包名改为你相应的工程包名.
+3. 修改导入的R
+=======
+# Fresco-Demo-For-Eclipse
+
+
+
+
+
+
+>>>>>>> .theirs
