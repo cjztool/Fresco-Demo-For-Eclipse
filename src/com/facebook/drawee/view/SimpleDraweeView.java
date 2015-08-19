@@ -24,84 +24,83 @@ import com.facebook.drawee.interfaces.SimpleDraweeControllerBuilder;
 /**
  * This view takes a uri as input and internally builds and sets a controller.
  *
- * <p>
- * This class must be statically initialized in order to be used. If you are
- * using the Fresco image pipeline, use
- * {@link com.facebook.drawee.backends.pipeline.Fresco#initialize} to do this.
+ * <p>This class must be statically initialized in order to be used. If you are using the Fresco
+ * image pipeline, use {@link com.facebook.drawee.backends.pipeline.Fresco#initialize} to do this.
  */
 public class SimpleDraweeView extends GenericDraweeView {
 
-	private static Supplier<? extends SimpleDraweeControllerBuilder> sDraweeControllerBuilderSupplier;
+  private static Supplier<? extends SimpleDraweeControllerBuilder> sDraweeControllerBuilderSupplier;
 
-	/**
-	 * Initializes {@link SimpleDraweeView} with supplier of Drawee controller
-	 * builders.
-	 */
-	public static void initialize(Supplier<? extends SimpleDraweeControllerBuilder> draweeControllerBuilderSupplier) {
-		sDraweeControllerBuilderSupplier = draweeControllerBuilderSupplier;
-	}
+  /** Initializes {@link SimpleDraweeView} with supplier of Drawee controller builders. */
+  public static void initialize(
+      Supplier<? extends SimpleDraweeControllerBuilder> draweeControllerBuilderSupplier) {
+    sDraweeControllerBuilderSupplier = draweeControllerBuilderSupplier;
+  }
 
-	/** Shuts {@link SimpleDraweeView} down. */
-	public static void shutDown() {
-		sDraweeControllerBuilderSupplier = null;
-	}
+  /** Shuts {@link SimpleDraweeView} down. */
+  public static void shutDown() {
+    sDraweeControllerBuilderSupplier = null;
+  }
 
-	private SimpleDraweeControllerBuilder mSimpleDraweeControllerBuilder;
+  private SimpleDraweeControllerBuilder mSimpleDraweeControllerBuilder;
 
-	public SimpleDraweeView(Context context, GenericDraweeHierarchy hierarchy) {
-		super(context, hierarchy);
-		init();
-	}
+  public SimpleDraweeView(Context context, GenericDraweeHierarchy hierarchy) {
+    super(context, hierarchy);
+    init();
+  }
 
-	public SimpleDraweeView(Context context) {
-		super(context);
-		init();
-	}
+  public SimpleDraweeView(Context context) {
+    super(context);
+    init();
+  }
 
-	public SimpleDraweeView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		init();
-	}
+  public SimpleDraweeView(Context context, AttributeSet attrs) {
+    super(context, attrs);
+    init();
+  }
 
-	public SimpleDraweeView(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-		init();
-	}
+  public SimpleDraweeView(Context context, AttributeSet attrs, int defStyle) {
+    super(context, attrs, defStyle);
+    init();
+  }
 
-	private void init() {
-		if (isInEditMode()) {
-			return;
-		}
-		Preconditions.checkNotNull(sDraweeControllerBuilderSupplier, "SimpleDraweeView was not initialized!");
-		mSimpleDraweeControllerBuilder = sDraweeControllerBuilderSupplier.get();
-	}
+  private void init() {
+    if (isInEditMode()) {
+      return;
+    }
+    Preconditions.checkNotNull(
+        sDraweeControllerBuilderSupplier,
+        "SimpleDraweeView was not initialized!");
+    mSimpleDraweeControllerBuilder = sDraweeControllerBuilderSupplier.get();
+  }
 
-	protected SimpleDraweeControllerBuilder getControllerBuilder() {
-		return mSimpleDraweeControllerBuilder;
-	}
+  protected SimpleDraweeControllerBuilder getControllerBuilder() {
+    return mSimpleDraweeControllerBuilder;
+  }
 
-	/**
-	 * Displays an image given by the uri.
-	 *
-	 * @param uri
-	 *            uri of the image
-	 * @undeprecate
-	 */
-	@Override
-	public void setImageURI(Uri uri) {
-		setImageURI(uri, null);
-	}
+  /**
+   * Displays an image given by the uri.
+   *
+   * @param uri uri of the image
+   * @undeprecate
+   */
+  @Override
+  public void setImageURI(Uri uri) {
+    setImageURI(uri, null);
+  }
 
-	/**
-	 * Displays an image given by the uri.
-	 *
-	 * @param uri
-	 *            uri of the image
-	 * @param callerContext
-	 *            caller context
-	 */
-	public void setImageURI(Uri uri, @Nullable Object callerContext) {
-		DraweeController controller = mSimpleDraweeControllerBuilder.setCallerContext(callerContext).setUri(uri).setOldController(getController()).build();
-		setController(controller);
-	}
+  /**
+   * Displays an image given by the uri.
+   *
+   * @param uri uri of the image
+   * @param callerContext caller context
+   */
+  public void setImageURI(Uri uri, @Nullable Object callerContext) {
+    DraweeController controller = mSimpleDraweeControllerBuilder
+        .setCallerContext(callerContext)
+        .setUri(uri)
+        .setOldController(getController())
+        .build();
+    setController(controller);
+  }
 }
